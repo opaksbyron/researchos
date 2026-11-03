@@ -20,6 +20,10 @@ jobs:
     timeout-minutes: 20
     env:
       NEXT_TELEMETRY_DISABLED: "1"
+      # Public browser configuration: both identifiers are shipped in the
+      # client bundle and let CI exercise the same anonymous demo as production.
+      NEXT_PUBLIC_MAIN_TENANT_KEY: "5517fcb27b1e467c941e08e9f84b63eb"
+      NEXT_PUBLIC_DEFAULT_AGENT_ID: "2d5e6649-6ed2-4325-8088-8ea4e5bbe5fc"
 
     steps:
       - name: Check out repository
