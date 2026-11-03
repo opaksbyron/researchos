@@ -46,15 +46,6 @@ ResearchOS now separates its public portfolio experience from the real authentic
 
 The public agent is a real streaming SDK integration rather than a scripted mock. Its trained source is [`docs/CASE_STUDY.md`](docs/CASE_STUDY.md); uploads, memory, voice, and private tenant data are disabled on the anonymous surface, source retrieval stays available, and a platform-enforced daily spend cap limits abuse. The authenticated workspace keeps the broader chat, datasets, memory, settings, and project capabilities behind ibl.ai SSO.
 
-Follow the [90-second demo script](docs/DEMO.md) to show one complete workflow:
-
-```text
-Add a public source -> train the knowledge base -> ask an evidence question
--> inspect the answer -> show memory -> explain the provider architecture
-```
-
-A portfolio recording should use a public-safe showcase tenant and follow the redaction checklist in the demo guide. Never record private tenant data or authentication state.
-
 ## Case study
 
 Read [Building ResearchOS with ibl.ai Vibe](docs/CASE_STUDY.md) for my explanation of:
