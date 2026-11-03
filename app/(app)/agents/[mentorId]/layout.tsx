@@ -42,7 +42,7 @@ export default function AgentLayout({children}: {children: ReactNode}) {
       <div className="flex min-h-screen flex-col bg-[var(--sidebar-bg,#fafbfc)]">
         {!projectRoute && (
           <header className="flex min-h-14 items-center justify-between gap-5 border-b border-slate-200 bg-white px-4 md:px-6">
-            <Link href="/" className="font-semibold tracking-tight text-[#0058cc]">
+            <Link href="/workspace" className="font-semibold tracking-tight text-[#0058cc]">
               ResearchOS
             </Link>
             <nav aria-label="Agent workspace" className="flex items-center gap-1 text-sm">

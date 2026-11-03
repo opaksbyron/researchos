@@ -7,22 +7,20 @@ import { test, expect } from '@playwright/test';
  * The setup saves browser storage state so the user is already logged in.
  */
 test.describe('auth journey', () => {
-  test('authenticated user lands on the home page', async ({ page }) => {
+  test('authenticated user lands on the workspace home page', async ({ page }) => {
     const appHost = process.env.APP_HOST || 'http://localhost:3000';
 
-    await page.goto(appHost);
+    await page.goto('/workspace');
 
     // User should reach the home page without being redirected to auth SPA
-    await page.waitForURL((url) => url.href.startsWith(appHost + '/'), {
+    await page.waitForURL((url) => url.href.startsWith(appHost + '/workspace'), {
       timeout: 15_000,
     });
-    await expect(page).toHaveURL(new RegExp(`^${appHost}`));
+    await expect(page).toHaveURL(new RegExp(`^${appHost}/workspace`));
   });
 
   test('auth tokens are stored in localStorage', async ({ page }) => {
-    const appHost = process.env.APP_HOST || 'http://localhost:3000';
-
-    await page.goto(appHost);
+    await page.goto('/workspace');
 
     // Wait for the app to finish loading (avoid networkidle — WebKit keeps connections open)
     await page.waitForLoadState('domcontentloaded', { timeout: 15_000 });

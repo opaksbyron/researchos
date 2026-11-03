@@ -10,6 +10,9 @@ A source-grounded AI workspace for research questions, evidence, projects, and s
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-CC785C?logoColor=white)](https://claude.ai)
+[![Verify ResearchOS](https://github.com/opaksbyron/researchos/actions/workflows/ci.yml/badge.svg)](https://github.com/opaksbyron/researchos/actions/workflows/ci.yml)
+
+[Live showcase](https://researchos-opaks.iblai.me) · [Guided demo](https://researchos-opaks.iblai.me/demo) · [Engineering case study](https://researchos-opaks.iblai.me/case-study)
 
 </div>
 
@@ -34,7 +37,14 @@ I did not recreate the underlying SDK components. My work is the application arc
 
 ## Demo
 
-The application itself is the working demo. It requires an ibl.ai organization because the chat, datasets, memory, and project surfaces use real platform data rather than mock responses.
+ResearchOS now separates its public portfolio experience from the real authenticated workspace:
+
+- [`/`](https://researchos-opaks.iblai.me) explains the product and implementation boundary without requiring sign-in;
+- [`/demo`](https://researchos-opaks.iblai.me/demo) provides a public, read-only source-to-conclusion walkthrough;
+- [`/case-study`](https://researchos-opaks.iblai.me/case-study) presents the provider, state, session, and RBAC architecture;
+- [`/workspace`](https://researchos-opaks.iblai.me/workspace) launches the real ibl.ai SSO flow and uses real platform data.
+
+The guided preview is clearly labelled and uses this repository's public case study as its source. The authenticated chat, datasets, memory, and project surfaces remain real SDK integrations rather than mocked responses.
 
 Follow the [90-second demo script](docs/DEMO.md) to show one complete workflow:
 
@@ -43,7 +53,7 @@ Add a public source -> train the knowledge base -> ask an evidence question
 -> inspect the answer -> show memory -> explain the provider architecture
 ```
 
-No screenshots are committed yet because the authenticated UI may contain organization or research data. A portfolio recording should use a public-safe showcase tenant and follow the redaction checklist in the demo guide.
+A portfolio recording should use a public-safe showcase tenant and follow the redaction checklist in the demo guide. Never record private tenant data or authentication state.
 
 ## Case study
 
@@ -103,7 +113,7 @@ NEXT_PUBLIC_DEFAULT_AGENT_ID=your-agent-uuid
 IBLAI_API_KEY=your-server-side-platform-token
 ```
 
-Open [http://localhost:3000](http://localhost:3000). An unauthenticated member is sent through ibl.ai SSO and returned to the ResearchOS workspace.
+Open [http://localhost:3000](http://localhost:3000) for the public showcase. Visit [http://localhost:3000/workspace](http://localhost:3000/workspace) to enter the ibl.ai SSO flow and return to the real ResearchOS workspace.
 
 Service URLs default to hosted `iblai.app` endpoints in `lib/iblai/config.ts`. Never expose `IBLAI_API_KEY` through a `NEXT_PUBLIC_*` variable.
 
@@ -113,6 +123,7 @@ Service URLs default to hosted `iblai.app` endpoints in `lib/iblai/config.ts`. N
 pnpm typecheck
 pnpm build
 pnpm test
+pnpm test:e2e:public
 pnpm start
 ```
 
@@ -137,9 +148,12 @@ For a public portfolio deployment, use a showcase organization containing only p
 
 ```text
 app/
+├── page.tsx                          Public portfolio showcase
+├── demo/page.tsx                     Public guided evidence workflow
+├── case-study/page.tsx               Public engineering narrative
 ├── (auth)/sso-login-complete/        SSO callback
 └── (app)/
-    ├── page.tsx                      ResearchOS launchpad
+    ├── workspace/page.tsx            Authenticated ResearchOS launchpad
     └── agents/[mentorId]/
         ├── chat-new/page.tsx         In-process Vibe chat
         ├── datasets/page.tsx         Research Library
@@ -156,6 +170,8 @@ lib/iblai/                            Platform config, auth, and tenant helpers
 providers/                            Auth, tenant, and service-worker providers
 store/                                SDK reducers and RTK Query middleware
 e2e/                                  Authenticated Playwright journeys
+├── public/                            No-login portfolio journeys
+└── COVERAGE.md                        Behaviour coverage register
 ```
 
 ## Built With
@@ -176,6 +192,8 @@ The repository includes:
 - an optimized Next.js production build;
 - Vitest source-contract tests;
 - Playwright journeys covering authentication, navigation, and an enabled Vibe chat composer;
+- public desktop and phone journeys with automated accessibility checks;
+- GitHub Actions verification for lint, type checking, tests, build, and Chromium journeys;
 - local runtime route smoke checks.
 
 Authenticated E2E tests require locally supplied test credentials and are intentionally not runnable from a public clone without them.

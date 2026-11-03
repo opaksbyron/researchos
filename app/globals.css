@@ -1,8 +1,15 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
-@tailwind utilities;
 
 @plugin 'tailwind-scrollbar';
+
+/* Explicit application sources keep production and platform builds identical. */
+@source "../app";
+@source "../components";
+@source "../hooks";
+@source "../lib";
+@source "../providers";
+@source "../store";
 
 /* SDK: custom base styles (CSS variables, no Tailwind utilities) */
 @import '@iblai/iblai-js/web-containers/styles';
@@ -63,6 +70,9 @@
  * Primary: #0058cc (ibl.ai blue), Gradient: #00b0ef -> #0058cc */
 :root {
   --radius: 0.5rem;
+  --research-paper: oklch(0.985 0.004 255);
+  --research-surface: oklch(0.998 0.002 255);
+  --research-ink: oklch(0.22 0.035 258);
   --background: oklch(1 0 0);                    /* #ffffff */
   --foreground: oklch(0.521 0.022 255.6);        /* #616a76  text-primary */
   --card: oklch(1 0 0);                          /* #ffffff */
@@ -167,6 +177,32 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
+}
+
+.research-grid {
+  background-color: var(--research-paper);
+  background-image:
+    linear-gradient(to right, oklch(0.87 0.012 255 / 0.38) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.87 0.012 255 / 0.38) 1px, transparent 1px);
+  background-size: 3.5rem 3.5rem;
+}
+
+.evidence-paper {
+  border: 1px solid oklch(0.89 0.012 255);
+  border-radius: 0.75rem;
+  background: var(--research-surface);
+  box-shadow: 0 28px 70px -52px oklch(0.22 0.035 258 / 0.65);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Prevent zoom on input focus for mobile devices */

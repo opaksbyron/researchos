@@ -32,6 +32,8 @@ yarn-error.log*
 # local env files
 .env*.local
 .env
+.env.production
+/app.zip
 
 # ibl.ai platform shorthand (holds your platform API token)
 iblai.env*

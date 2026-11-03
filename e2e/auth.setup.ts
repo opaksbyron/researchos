@@ -8,7 +8,6 @@ dotenv.config({
 });
 
 const APP_HOST = process.env.APP_HOST || 'http://localhost:3000';
-const AUTH_HOST = process.env.AUTH_HOST || 'https://login.iblai.app';
 
 setup('authenticate', async ({ page }) => {
   setup.setTimeout(120_000);
@@ -23,7 +22,10 @@ setup('authenticate', async ({ page }) => {
   }
 
   // Navigate to the app — AuthProvider will redirect to the auth SPA
-  await page.goto(APP_HOST, { waitUntil: 'domcontentloaded', timeout: 30_000 });
+  await page.goto(new URL('/workspace', APP_HOST).toString(), {
+    waitUntil: 'domcontentloaded',
+    timeout: 30_000,
+  });
 
   // Wait for the auth SPA login page — just check for /login and app=agent
   await page.waitForURL(

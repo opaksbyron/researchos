@@ -10,9 +10,38 @@ const openSans = Open_Sans({
   variable: "--font-open-sans",
 });
 
+const configuredUrl = process.env.NEXT_PUBLIC_AGENT_URL;
+const siteUrl = configuredUrl?.startsWith("http")
+  ? configuredUrl
+  : "http://localhost:3000";
+
 export const metadata: Metadata = {
-  title: "ResearchOS",
-  description: "A collaborative AI research workspace powered by ibl.ai",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "ResearchOS | Source-grounded AI research",
+    template: "%s | ResearchOS",
+  },
+  description:
+    "A source-grounded AI research workspace for evidence, memory, projects, and inspectable conclusions.",
+  keywords: ["AI research", "RAG", "knowledge base", "ibl.ai", "research workspace"],
+  authors: [{ name: "Byron Opaks" }],
+  creator: "Byron Opaks",
+  icons: { icon: "/favicon.svg" },
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "ResearchOS | Research that shows its working",
+    description:
+      "Follow source material into inspectable AI-assisted analysis, durable context, and organized project work.",
+    type: "website",
+    siteName: "ResearchOS",
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ResearchOS | Research that shows its working",
+    description:
+      "A source-grounded AI research workspace built with the ibl.ai Vibe SDK.",
+  },
 };
 
 export const viewport: Viewport = {

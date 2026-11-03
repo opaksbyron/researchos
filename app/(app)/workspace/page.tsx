@@ -26,7 +26,7 @@ const destinations = [
   },
 ] as const;
 
-export default function Home() {
+export default function WorkspaceHome() {
   const username = useUsername();
   const agentId = config.defaultAgentId();
 
@@ -34,7 +34,13 @@ export default function Home() {
     <main className="min-h-screen bg-[var(--sidebar-bg,#fafbfc)] px-5 py-12 text-slate-900 md:px-10">
       <div className="mx-auto max-w-5xl">
         <header className="max-w-3xl border-b border-slate-200 pb-8">
-          <p className="mb-3 text-sm font-medium text-[#0058cc]">ResearchOS</p>
+          <div className="mb-3 flex items-center gap-3 text-sm font-medium">
+            <Link className="text-[#0058cc] hover:underline" href="/">
+              ResearchOS
+            </Link>
+            <span aria-hidden="true" className="text-slate-300">/</span>
+            <span className="text-slate-500">Workspace</span>
+          </div>
           <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
             Turn scattered sources into shared understanding.
           </h1>
@@ -46,7 +52,7 @@ export default function Home() {
 
         {agentId ? (
           <nav aria-label="ResearchOS workspace" className="mt-10 divide-y divide-slate-200 border-y border-slate-200">
-            {destinations.map(({label, description, href, icon: Icon}) => (
+            {destinations.map(({ label, description, href, icon: Icon }) => (
               <Link
                 key={label}
                 href={href(agentId)}

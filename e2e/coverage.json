@@ -1,0 +1,18 @@
+{
+  "journeys": [
+    { "id": "public-story", "status": "covered", "spec": "public/showcase.spec.ts" },
+    { "id": "public-responsive", "status": "covered", "spec": "public/showcase.spec.ts" },
+    { "id": "public-accessibility", "status": "covered", "spec": "public/showcase.spec.ts" },
+    { "id": "guided-demo", "status": "covered", "spec": "public/showcase.spec.ts" },
+    { "id": "case-study", "status": "covered", "spec": "public/showcase.spec.ts" },
+    { "id": "member-sso", "status": "covered", "spec": "journeys/auth.journey.spec.ts" },
+    { "id": "chat-composer", "status": "covered", "spec": "journeys/chat.journey.spec.ts" },
+    { "id": "agent-navigation", "status": "covered", "spec": "journeys/chat.journey.spec.ts" }
+  ],
+  "summary": {
+    "covered": 8,
+    "total": 8,
+    "deprecated": 0,
+    "percent": 100
+  }
+}

@@ -2,7 +2,7 @@ import {test, expect} from "@playwright/test";
 
 test.describe("ResearchOS workspace", () => {
   test("opens the real in-process Vibe chat with an enabled composer", async ({page}) => {
-    await page.goto("/");
+    await page.goto("/workspace");
 
     const researchChat = page.getByRole("link", {name: /research chat/i});
     await expect(researchChat).toBeVisible({timeout: 30_000});
@@ -19,7 +19,7 @@ test.describe("ResearchOS workspace", () => {
   });
 
   test("navigates between the agent library, memory, and settings", async ({page}) => {
-    await page.goto("/");
+    await page.goto("/workspace");
     await page.getByRole("link", {name: /research chat/i}).click();
 
     for (const destination of ["Library", "Memory", "Settings"]) {
