@@ -12,7 +12,7 @@ A source-grounded AI workspace for research questions, evidence, projects, and s
 [![Claude Code](https://img.shields.io/badge/Claude_Code-CC785C?logoColor=white)](https://claude.ai)
 [![Verify ResearchOS](https://github.com/opaksbyron/researchos/actions/workflows/ci.yml/badge.svg)](https://github.com/opaksbyron/researchos/actions/workflows/ci.yml)
 
-[Live showcase](https://researchos-opaks.iblai.me) · [Guided demo](https://researchos-opaks.iblai.me/demo) · [Engineering case study](https://researchos-opaks.iblai.me/case-study)
+[Live showcase](https://researchos-opaks.iblai.me) · [Live AI demo](https://researchos-opaks.iblai.me/demo) · [Engineering case study](https://researchos-opaks.iblai.me/case-study)
 
 </div>
 
@@ -40,11 +40,11 @@ I did not recreate the underlying SDK components. My work is the application arc
 ResearchOS now separates its public portfolio experience from the real authenticated workspace:
 
 - [`/`](https://researchos-opaks.iblai.me) explains the product and implementation boundary without requiring sign-in;
-- [`/demo`](https://researchos-opaks.iblai.me/demo) provides a public, read-only source-to-conclusion walkthrough;
+- [`/demo`](https://researchos-opaks.iblai.me/demo) opens a real anonymous ResearchOS agent, grounded in this repository's public case study, plus an inspectable source-to-conclusion walkthrough;
 - [`/case-study`](https://researchos-opaks.iblai.me/case-study) presents the provider, state, session, and RBAC architecture;
 - [`/workspace`](https://researchos-opaks.iblai.me/workspace) launches the real ibl.ai SSO flow and uses real platform data.
 
-The guided preview is clearly labelled and uses this repository's public case study as its source. The authenticated chat, datasets, memory, and project surfaces remain real SDK integrations rather than mocked responses.
+The public agent is a real streaming SDK integration rather than a scripted mock. Its trained source is [`docs/CASE_STUDY.md`](docs/CASE_STUDY.md); uploads, memory, voice, and private tenant data are disabled on the anonymous surface, source retrieval stays available, and a platform-enforced daily spend cap limits abuse. The authenticated workspace keeps the broader chat, datasets, memory, settings, and project capabilities behind ibl.ai SSO.
 
 Follow the [90-second demo script](docs/DEMO.md) to show one complete workflow:
 
@@ -149,7 +149,7 @@ For a public portfolio deployment, use a showcase organization containing only p
 ```text
 app/
 ├── page.tsx                          Public portfolio showcase
-├── demo/page.tsx                     Public guided evidence workflow
+├── demo/page.tsx                     Live anonymous agent + evidence workflow
 ├── case-study/page.tsx               Public engineering narrative
 ├── (auth)/sso-login-complete/        SSO callback
 └── (app)/
@@ -162,6 +162,7 @@ app/
         └── settings/page.tsx         Agent configuration
 components/
 ├── app-shell.tsx                     Store and provider boundary
+├── showcase/public-research-sandbox.tsx  Public-safe streaming agent
 └── radix-pointer-events-guard.tsx    SDK dialog recovery
 docs/
 ├── CASE_STUDY.md                     First-person architecture case study

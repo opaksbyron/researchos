@@ -8,7 +8,7 @@ test.describe("public ResearchOS showcase", () => {
     await expect(
       page.getByRole("heading", { name: "Research that shows its working." }),
     ).toBeVisible();
-    await expect(page.getByRole("link", { name: "Try the guided demo" })).toHaveAttribute(
+    await expect(page.getByRole("link", { name: "Try the live demo" })).toHaveAttribute(
       "href",
       "/demo",
     );
@@ -33,8 +33,17 @@ test.describe("public ResearchOS showcase", () => {
     expect(seriousViolations).toEqual([]);
   });
 
-  test("walks through every guided demo step", async ({ page }) => {
+  test("walks through every live demo step", async ({ page }) => {
     await page.goto("/demo");
+
+    await expect(
+      page.getByRole("heading", { name: "Ask ResearchOS about the evidence behind its own build." }),
+    ).toBeVisible();
+    await expect(page.getByText("Live anonymous agent", { exact: true })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Inspect the trained source" })).toHaveAttribute(
+      "href",
+      "https://github.com/opaksbyron/researchos/blob/main/docs/CASE_STUDY.md",
+    );
 
     const ground = page.getByRole("tab", { name: "Ground" });
     const question = page.getByRole("tab", { name: "Question" });
@@ -55,6 +64,14 @@ test.describe("public ResearchOS showcase", () => {
       () => document.documentElement.scrollWidth <= document.documentElement.clientWidth,
     );
     expect(hasNoHorizontalOverflow).toBe(true);
+  });
+
+  test("mounts the real anonymous research composer", async ({ page }) => {
+    await page.goto("/demo");
+
+    await expect(page.getByPlaceholder("Ask anything")).toBeVisible({ timeout: 20_000 });
+    await expect(page.getByText("Anonymous session · do not submit sensitive information")).toBeVisible();
+    await expect(page.locator("nextjs-portal")).toHaveCount(0);
   });
 
   test("publishes the engineering case study", async ({ page }) => {

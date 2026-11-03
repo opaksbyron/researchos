@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { EvidenceDemo } from "@/components/showcase/evidence-demo";
+import { PublicResearchSandbox } from "@/components/showcase/public-research-sandbox";
 import { SiteHeader } from "@/components/showcase/site-header";
 
 export const metadata: Metadata = {
-  title: "Guided Demo",
+  title: "Live Research Demo",
   description:
-    "Follow a public ResearchOS workflow from a trained source to a source-grounded, inspectable conclusion.",
+    "Ask the live ResearchOS agent a source-grounded question, then inspect the evidence workflow behind its answer.",
 };
 
 export default function DemoPage() {
@@ -15,6 +16,7 @@ export default function DemoPage() {
     <div className="min-h-screen bg-[var(--research-paper)]">
       <SiteHeader />
       <main id="main-content">
+        <PublicResearchSandbox />
         <EvidenceDemo />
         <section className="border-t border-slate-200 bg-white py-14">
           <div className="mx-auto flex max-w-7xl flex-col gap-5 px-5 sm:flex-row sm:items-center sm:justify-between sm:px-8">

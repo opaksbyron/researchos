@@ -160,14 +160,14 @@ export function EvidenceDemo() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="flex flex-col gap-7 border-b border-slate-300 pb-8 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-sm font-semibold text-blue-700">Guided public preview</p>
+            <p className="text-sm font-semibold text-blue-700">How to inspect the result</p>
             <h1 id="guided-demo-heading" className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
               Follow one claim from source to conclusion.
             </h1>
           </div>
           <p className="max-w-md text-sm leading-6 text-slate-600">
-            The preview is deliberately public and read-only. The live workspace uses
-            real organization data after ibl.ai SSO.
+            The walkthrough below explains the evidence pattern demonstrated by the
+            live anonymous agent above. The member workspace adds private organization data after SSO.
           </p>
         </div>
 

@@ -22,6 +22,18 @@ describe("public showcase structure", () => {
     expect(home).toContain("https://github.com/opaksbyron/researchos");
   });
 
+  it("mounts the live demo through an explicitly public agent route", () => {
+    const demo = read("app/demo/page.tsx");
+    const sandbox = read("components/showcase/public-research-sandbox.tsx");
+    const providers = read("providers/index.tsx");
+
+    expect(demo).toContain("<PublicResearchSandbox />");
+    expect(sandbox).toContain("isPublicRoute");
+    expect(sandbox).toContain('axdToken=""');
+    expect(sandbox).toContain("config.defaultAgentId()");
+    expect(providers).toContain('new RegExp("^/demo(?:/|$)")');
+  });
+
   it("documents every required public deployment setting", () => {
     const envExample = read(".env.example");
     expect(envExample).toContain("NEXT_PUBLIC_MAIN_TENANT_KEY=");

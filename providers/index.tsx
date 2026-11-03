@@ -87,6 +87,7 @@ function hasNonExpiredAuthToken(): boolean {
 // Routes that skip auth
 const PUBLIC_ROUTES = new Map<RegExp, () => Promise<boolean>>([
   [new RegExp("^/sso-login"), async () => false],
+  [new RegExp("^/demo(?:/|$)"), async () => false],
 ]);
 
 const LOADING = (

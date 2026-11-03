@@ -70,7 +70,7 @@ export default function PublicHome() {
                   className="inline-flex items-center gap-2 rounded-lg bg-blue-700 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
                   href="/demo"
                 >
-                  Try the guided demo
+                  Try the live demo
                   <ArrowRight aria-hidden="true" className="size-4" />
                 </Link>
                 <Link

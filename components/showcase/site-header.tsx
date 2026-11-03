@@ -17,7 +17,7 @@ export function SiteHeader() {
 
         <nav aria-label="Public navigation" className="hidden items-center gap-6 text-sm text-slate-600 md:flex">
           <Link className="transition-colors hover:text-slate-950" href="/demo">
-            Guided demo
+            Live demo
           </Link>
           <Link className="transition-colors hover:text-slate-950" href="/case-study">
             Case study
